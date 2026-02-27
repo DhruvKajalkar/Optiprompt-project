@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from entropy_engine import compress_prompt
 
+from database import engine
+from models import Base
+
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
     title="Entropy Prompt Optimizer API",
     description="Shannon Surprisal-based prompt compression backend",
